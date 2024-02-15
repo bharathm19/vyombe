@@ -12,13 +12,27 @@ public class Member {
     public String email;
     public String userName;
     public String password;
+    public long lastUpdated;
+    public ArrayList<String> followers = new ArrayList<>();
     public ArrayList<HashMap<String,String>> posts = new ArrayList<>();
 
+    public long getLastUpdated() {
+        return lastUpdated;
+    }
+    public void setLastUpdated(long lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
     public String getPassword() {
         return password;
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public ArrayList<String> getFollowers() {
+        return followers;
+    }
+    public void setFollowers(ArrayList<String> followers) {
+        this.followers = followers;
     }
     public ArrayList<HashMap<String, String>> getPosts() {
         return posts;

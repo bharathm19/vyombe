@@ -1,6 +1,6 @@
 package com.instaclone.instaclone.controller;
 
-import java.util.HashMap;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.instaclone.instaclone.Requests.FollowRequest;
 import com.instaclone.instaclone.Requests.LoginRequest;
+import com.instaclone.instaclone.Requests.PostRequest;
 import com.instaclone.instaclone.Requests.UploadRequest;
 import com.instaclone.instaclone.entity.Member;
 import com.instaclone.instaclone.interfaces.IMemberService;
@@ -39,7 +41,22 @@ public class MemberController {
     }
 
     @PutMapping("/{id}/upload")
-    Boolean upload(@Valid @RequestBody UploadRequest uploadRequest, @PathVariable String id){
+    Boolean upload(@PathVariable String id,@Valid @RequestBody UploadRequest uploadRequest){
         return memberService.upload(uploadRequest,id);
+    }
+
+    @GetMapping("/{id}/getposts")
+    ArrayList<HashMap<String,String>> getPosts(@PathVariable String id){
+        return memberService.getPosts(id);
+    }
+
+    @GetMapping("/{id}/getusers")
+    List<Member> getUsers(@PathVariable String id){
+        return memberService.getUsers(id);
+    }
+
+    @PutMapping("/{id}/followrequest")
+    Boolean followRequest(@RequestBody @Valid FollowRequest followRequest, @PathVariable String id){
+        return memberService.followRequest(followRequest,id);
     }
 }
